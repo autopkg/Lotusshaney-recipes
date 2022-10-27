@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of IPVanish VPN.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.download.IPVanishVPN</string>
+	<string>com.github.Lotusshaney.download.IPVanishVPN</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

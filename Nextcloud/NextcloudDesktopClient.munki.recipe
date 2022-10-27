@@ -7,7 +7,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Nextcloud Desktop Client and imports it into Munki.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.munki.nextcloud</string>
+	<string>com.github.Lotusshaney.munki.nextcloud</string>
 	<key>Input</key>
 	<dict>
 		<key>MUNKI_REPO_SUBDIR</key>
@@ -47,7 +47,7 @@ exit 0</string>
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
 	<key>ParentRecipe</key>
-	<string>uk.co.designed79.download.nextcloud</string>
+	<string>com.github.Lotusshaney.download.nextcloud</string>
 	<key>Process</key>
 	<array>
 		<dict>

@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Get iPlayer Automator and creates a package.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.pkg.GetiPlayerAutomator</string>
+	<string>com.github.Lotusshaney.pkg.GetiPlayerAutomator</string>
 	<key>Input</key>
 	<dict>
 		<key>BUNDLE_ID</key>
@@ -16,7 +16,7 @@
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
 	<key>ParentRecipe</key>
-	<string>uk.co.designed79.download.GetiPlayerAutomator</string>
+	<string>com.github.Lotusshaney.download.GetiPlayerAutomator</string>
 	<key>Process</key>
 	<array>
 		<dict>

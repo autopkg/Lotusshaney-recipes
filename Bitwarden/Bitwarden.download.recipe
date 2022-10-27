@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Bitwarden.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.download.Bitwarden</string>
+	<string>com.github.Lotusshaney.download.Bitwarden</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Jamf Pro Switcher.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.download.JamfProSwitcher</string>
+	<string>com.github.Lotusshaney.download.JamfProSwitcher</string>
 	<key>Input</key>
 	<dict>
 		<key>GITHUB_REPO</key>

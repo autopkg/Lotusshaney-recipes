@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of No-IP DUC and imports it into Munki.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.munki.No-IPDUC</string>
+	<string>com.github.Lotusshaney.munki.No-IPDUC</string>
 	<key>Input</key>
 	<dict>
 		<key>MUNKI_REPO_SUBDIR</key>
@@ -33,7 +33,7 @@
 	<key>MinimumVersion</key>
 	<string>0.6.1</string>
 	<key>ParentRecipe</key>
-	<string>uk.co.designed79.download.No-IPDUC</string>
+	<string>com.github.Lotusshaney.download.No-IPDUC</string>
 	<key>Process</key>
 	<array>
 		<dict>

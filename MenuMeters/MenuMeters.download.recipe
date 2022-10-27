@@ -7,7 +7,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of MenuMeters.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.download.MenuMeters</string>
+	<string>com.github.Lotusshaney.download.MenuMeters</string>
 	<key>Input</key>
 	<dict>
 		<key>GITHUB_REPO</key>

@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of A Better Finder Rename 11.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.download.ABetterFinderRename11</string>
+	<string>com.github.Lotusshaney.download.ABetterFinderRename11</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

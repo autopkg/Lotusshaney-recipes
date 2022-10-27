@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Murus.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.download.murus</string>
+	<string>com.github.Lotusshaney.download.murus</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

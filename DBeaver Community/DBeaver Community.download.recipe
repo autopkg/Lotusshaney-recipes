@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of DBeaver Community.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.download.DBeaverCommunity</string>
+	<string>com.github.Lotusshaney.download.DBeaverCommunity</string>
 	<key>Input</key>
 	<dict>
 		<key>APP_FILENAME</key>

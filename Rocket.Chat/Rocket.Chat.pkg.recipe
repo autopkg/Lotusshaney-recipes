@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Rocket.Chat and creates a package.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.pkg.Rocket.Chat</string>
+	<string>com.github.Lotusshaney.pkg.Rocket.Chat</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>
@@ -14,7 +14,7 @@
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
 	<key>ParentRecipe</key>
-	<string>uk.co.designed79.download.Rocket.Chat</string>
+	<string>com.github.Lotusshaney.download.Rocket.Chat</string>
 	<key>Process</key>
 	<array>
 		<dict>

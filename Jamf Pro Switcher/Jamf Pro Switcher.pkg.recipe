@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Jamf Pro Switcher and creates a package.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.pkg.JamfProSwitcher</string>
+	<string>com.github.Lotusshaney.pkg.JamfProSwitcher</string>
 	<key>Input</key>
 	<dict>
 		<key>BUNDLE_ID</key>
@@ -16,7 +16,7 @@
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
 	<key>ParentRecipe</key>
-	<string>uk.co.designed79.download.JamfProSwitcher</string>
+	<string>com.github.Lotusshaney.download.JamfProSwitcher</string>
 	<key>Process</key>
 	<array>
 		<dict>

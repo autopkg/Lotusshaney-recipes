@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Nextcloud Desktop Client.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.download.nextcloud</string>
+	<string>com.github.Lotusshaney.download.nextcloud</string>
 	<key>Input</key>
 	<dict>
 		<key>GITHUB_REPO</key>

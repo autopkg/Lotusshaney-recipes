@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the latest LaunchControl zip and imports into Munki.</string>
     <key>Identifier</key>
-    <string>uk.co.designed79.munki.LaunchControl</string>
+    <string>com.github.Lotusshaney.munki.LaunchControl</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -33,7 +33,7 @@
     <key>MinimumVersion</key>
     <string>0.2.0</string>
     <key>ParentRecipe</key>
-    <string>uk.co.designed79.download.LaunchControl</string>
+    <string>com.github.Lotusshaney.download.LaunchControl</string>
     <key>Process</key>
     <array>
         <dict>

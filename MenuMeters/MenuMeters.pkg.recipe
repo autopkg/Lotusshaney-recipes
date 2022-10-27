@@ -7,7 +7,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of MenuMeters and creates a package.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.pkg.MenuMeters</string>
+	<string>com.github.Lotusshaney.pkg.MenuMeters</string>
 	<key>Input</key>
 	<dict>
 		<key>BUNDLE_ID</key>
@@ -18,7 +18,7 @@
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
 	<key>ParentRecipe</key>
-	<string>uk.co.designed79.download.MenuMeters</string>
+	<string>com.github.Lotusshaney.download.MenuMeters</string>
 	<key>Process</key>
 	<array>
 		<dict>

@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of DBeaver Community and creates a package.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.pkg.DBeaverCommunity</string>
+	<string>com.github.Lotusshaney.pkg.DBeaverCommunity</string>
 	<key>Input</key>
 	<dict>
 		<key>APP_FILENAME</key>
@@ -16,7 +16,7 @@
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
 	<key>ParentRecipe</key>
-	<string>uk.co.designed79.download.DBeaverCommunity</string>
+	<string>com.github.Lotusshaney.download.DBeaverCommunity</string>
 	<key>Process</key>
 	<array>
 		<dict>

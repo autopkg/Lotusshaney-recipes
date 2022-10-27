@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of IINA.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.download.IINA</string>
+	<string>com.github.Lotusshaney.download.IINA</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

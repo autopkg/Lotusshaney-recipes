@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Rocket.Chat.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.download.Rocket.Chat</string>
+	<string>com.github.Lotusshaney.download.Rocket.Chat</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

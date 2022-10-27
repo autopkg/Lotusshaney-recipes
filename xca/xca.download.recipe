@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of xca.</string>
 	<key>Identifier</key>
-	<string>uk.co.designed79.download.xca</string>
+	<string>com.github.Lotusshaney.download.xca</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

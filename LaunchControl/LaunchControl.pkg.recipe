@@ -5,7 +5,7 @@
     <key>Description</key>
     <string>Downloads the current release version of LaunchControl and builds a package.</string>
     <key>Identifier</key>
-    <string>uk.co.designed79.pkg.LaunchControl</string>
+    <string>com.github.Lotusshaney.pkg.LaunchControl</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
@@ -14,7 +14,7 @@
     <key>MinimumVersion</key>
     <string>0.2.0</string>
     <key>ParentRecipe</key>
-    <string>uk.co.designed79.download.LaunchControl</string>
+    <string>com.github.Lotusshaney.download.LaunchControl</string>
     <key>Process</key>
     <array>
         <dict>
