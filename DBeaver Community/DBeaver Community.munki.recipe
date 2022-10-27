@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Description</key>
+		<string>Downloads the latest version of DBeaver Community and imports it into Munki.</string>
+		<key>Identifier</key>
+		<string>uk.co.designed79.munki.DBeaverCommunity</string>
+		<key>Input</key>
+		<dict>
+			<key>APP_FILENAME</key>
+			<string>DBeaver</string>
+			<key>MUNKI_REPO_SUBDIR</key>
+			<string>apps/%NAME%</string>
+			<key>NAME</key>
+			<string>DBeaver</string>
+			<key>pkginfo</key>
+			<dict>
+				<key>blocking_applications</key>
+				<array>
+					<string>DBeaver</string>
+				</array>
+				<key>catalogs</key>
+				<array>
+					<string>testing</string>
+				</array>
+				<key>description</key>
+				<string>Free multi-platform database tool for developers, database administrators, analysts and all people who need to work with databases. Supports all popular databases: MySQL, PostgreSQL, SQLite, Oracle, DB2, SQL Server, Sybase, MS Access, Teradata, Firebird, Apache Hive, Phoenix, Presto, etc.</string>
+				<key>developer</key>
+				<string>DBeaver Corporation</string>
+				<key>display_name</key>
+				<string>DBeaver Community</string>
+				<key>name</key>
+				<string>%NAME%</string>
+				<key>unattended_install</key>
+				<true/>
+			</dict>
+		</dict>
+		<key>MinimumVersion</key>
+		<string>1.0.0</string>
+		<key>ParentRecipe</key>
+		<string>uk.co.designed79.pkg.DBeaverCommunity</string>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>additional_pkginfo</key>
+					<dict>
+						<key>installs</key>
+						<array>
+							<dict>
+								<key>path</key>
+								<string>/Applications/DBeaver.app</string>
+								<key>type</key>
+								<string>application</string>
+								<key>CFBundleShortVersionString</key>
+								<string>%version%</string>
+							</dict>
+						</array>
+					</dict>
+				</dict>
+				<key>Processor</key>
+				<string>MunkiPkginfoMerger</string>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>pkg_path</key>
+					<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+					<key>repo_subdirectory</key>
+					<string>%MUNKI_REPO_SUBDIR%</string>
+				</dict>
+				<key>Processor</key>
+				<string>MunkiImporter</string>
+			</dict>
+		</array>
+	</dict>
+</plist>

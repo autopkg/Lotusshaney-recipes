@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of Get iPlayer Automator and imports it into Munki.</string>
+	<key>Identifier</key>
+	<string>uk.co.designed79.munki.GetiPlayerAutomator</string>
+	<key>Input</key>
+	<dict>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>apps/%NAME%</string>
+		<key>NAME</key>
+		<string>Get iPlayer Automator</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>description</key>
+			<string>The goal of Get iPlayer Automator is to allow iTunes and your Mac to become the hub for your British Television experience regardless of where in the world you are.  Currently, Get iPlayer Automator allows you to download and watch BBC and ITV shows on your Mac. Series-Link/PVR functionality ensures you will never miss your favourite shows. Programmes are fully tagged and added to iTunes automatically upon completion. It is simple and easy to use, and runs on any machine running Mac OS X 10.7 or later.  And since the shows are in iTunes, it is extremely easy to transfer them to your iPod, iPhone, or Apple TV allowing you to enjoy your shows on the go or on your television.</string>
+			<key>developer</key>
+			<string>Ascoware LLC</string>
+			<key>display_name</key>
+			<string>Get iPlayer Automator</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>unattended_install</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>1.0.0</string>
+	<key>ParentRecipe</key>
+	<string>uk.co.designed79.download.GetiPlayerAutomator</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>dmg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%.dmg</string>
+				<key>dmg_root</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+			</dict>
+			<key>Processor</key>
+			<string>DmgCreator</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%dmg_path%</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
