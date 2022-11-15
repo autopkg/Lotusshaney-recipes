@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+œ<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads the latest version of IPVanish VPN and imports it into Munki.</string>
+	<string>IPVanish provides a secure environment for everyday internet activity. This recipe downloads the latest version of IPVanish VPN client and imports it into Munki.</string>
 	<key>Identifier</key>
 	<string>com.github.Lotusshaney.munki.IPVanishVPN</string>
 	<key>Input</key>

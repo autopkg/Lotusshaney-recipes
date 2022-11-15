@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads the latest version of No-IP DUC and imports it into Munki.</string>
+	<string>Keep your current IP address in sync with your No-IP host or domain with the Dynamic Update Client (DUC). This recipe downloads the latest version of No-IP DUC and imports it into Munki.</string>
 	<key>Identifier</key>
 	<string>com.github.Lotusshaney.munki.No-IPDUC</string>
 	<key>Input</key>
