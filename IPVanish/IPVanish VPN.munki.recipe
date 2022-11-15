@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>IPVanish provides a secure environment for everyday internet activity. This recipe downloads the latest version of IPVanish VPN client and imports it into Munki.</string>
+	<string>This recipe downloads the latest version of IPVanish VPN client and imports it into Munki.</string>
 	<key>Identifier</key>
 	<string>com.github.Lotusshaney.munki.IPVanishVPN</string>
 	<key>Input</key>
@@ -19,7 +19,7 @@
 				<string>testing</string>
 			</array>
 			<key>description</key>
-			<string> </string>
+			<string>IPVanish provides a secure environment for everyday internet activity.</string>
 			<key>developer</key>
 			<string>Mudhook Marketing, Inc.</string>
 			<key>display_name</key>
