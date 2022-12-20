@@ -19,7 +19,7 @@
 				<string>testing</string>
 			</array>
 			<key>description</key>
-			<string>Murus PF Firewallt</string>
+			<string>Front-end for macOS packet filter firewall.</string>
 			<key>display_name</key>
 			<string>Murus</string>
 			<key>name</key>
