@@ -35,7 +35,7 @@
 		<key>MinimumVersion</key>
 		<string>1.0.0</string>
 		<key>ParentRecipe</key>
-		<string>com.github.arubdesu.pkg.8x8Work</string>
+		<string>com.github.Lotusshaney.pkg.8x8Work</string>
 		<key>Process</key>
 		<array>
 			<dict>
