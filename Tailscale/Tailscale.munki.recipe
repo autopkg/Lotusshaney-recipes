@@ -41,7 +41,7 @@
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
 	<key>ParentRecipe</key>
-	<string>com.github.macprince.pkg.Tailscale</string>
+	<string>com.github.Lotusshaney.pkg.Tailscale</string>
 	<key>Process</key>
 	<array>
 		<dict>

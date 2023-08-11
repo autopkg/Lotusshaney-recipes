@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Description</key>
+		<string>Downloads the latest version of Tailscale and creates a package.</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.pkg.Tailscale</string>
+		<key>Input</key>
+		<dict>
+			<key>NAME</key>
+			<string>Tailscale</string>
+		</dict>
+		<key>MinimumVersion</key>
+		<string>1.0.0</string>
+		<key>ParentRecipe</key>
+		<string>com.github.macprince.download.Tailscale</string>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/payload</string>
+					<key>pkgdirs</key>
+					<dict/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/payload/Applications</string>
+					<key>pkgdirs</key>
+					<dict/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/Scripts</string>
+					<key>pkgdirs</key>
+					<dict/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>FileCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>file_path</key>
+					<string>%RECIPE_CACHE_DIR%/Scripts/preinstall</string>
+					<key>file_mode</key>
+					<string>0755</string>
+					<key>file_content</key>
+					<string>#!/bin/bash
+
+#Kill running Tailscale
+ps -ef | grep -i /Applications/Tailscale | grep -vi grep | awk '{ print $2 }' | while read kpid ; do kill -9 $kpid ; touch /tmp/ts_killed ; done
+
+exit 0</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>FileCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>file_path</key>
+					<string>%RECIPE_CACHE_DIR%/Scripts/postinstall</string>
+					<key>file_mode</key>
+					<string>0755</string>
+					<key>file_content</key>
+					<string><![CDATA[#!/bin/bash
+
+#Define Func
+runAsUser() {
+currentUser=$( echo "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { print $3 }' )
+uid=$(id -u "$currentUser")
+#Only open Tailscale if a user is logged in, and if the logged in user is not loginwindow
+if [[ -n "$currentUser" && "$currentUser" != "loginwindow" ]]; then
+	launchctl asuser "$uid" sudo -u "$currentUser" "$@"
+fi
+}
+
+#Open Tailscale 8 if it was open already
+if [[ -e /tmp/ts_killed ]] ; then
+	runAsUser open /Applications/Tailscale.app
+	rm -rf /tmp/ts_killed
+fi
+
+exit 0
+					]]></string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>FileMover</string>
+				<key>Arguments</key>
+				<dict>
+					<key>source</key>
+					<string>%RECIPE_CACHE_DIR%/Tailscale/Tailscale.app</string>
+					<key>target</key>
+					<string>%RECIPE_CACHE_DIR%/payload/Applications/Tailscale.app</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>input_plist_path</key>
+					<string>%RECIPE_CACHE_DIR%/payload/Applications/Tailscale.app/Contents/Info.plist</string>
+					<key>plist_version_key</key>
+					<string>CFBundleShortVersionString</string>
+				</dict>
+				<key>Processor</key>
+				<string>Versioner</string>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkg_request</key>
+					<dict>
+						<key>chown</key>
+						<array>
+							<dict>
+								<key>group</key>
+								<string>wheel</string>
+								<key>path</key>
+								<string>Applications</string>
+								<key>user</key>
+								<string>root</string>
+							</dict>
+							<dict>
+								<key>group</key>
+								<string>wheel</string>
+								<key>mode</key>
+								<string>0755</string>
+								<key>path</key>
+								<string>Applications/Tailscale.app</string>
+								<key>user</key>
+								<string>root</string>
+							</dict>
+						</array>
+						<key>pkgname</key>
+						<string>%NAME%-%version%</string>
+						<key>version</key>
+						<string>%version%</string>
+						<key>id</key>
+						<string>io.tailscale.ipn.macsys</string>
+						<key>scripts</key>
+						<string>%RECIPE_CACHE_DIR%/Scripts</string>
+						<key>pkgroot</key>
+						<string>%RECIPE_CACHE_DIR%/payload</string>
+						<key>options</key>
+						<string>purge_ds_store</string>
+					</dict>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PathDeleter</string>
+				<key>Arguments</key>
+				<dict>
+					<key>path_list</key>
+					<array>
+						<string>%RECIPE_CACHE_DIR%/Scripts/</string>
+						<string>%RECIPE_CACHE_DIR%/payload/</string>
+						<string>%RECIPE_CACHE_DIR%/TailScale/</string>
+					</array>
+				</dict>
+			</dict>
+		</array>
+	</dict>
+</plist>
