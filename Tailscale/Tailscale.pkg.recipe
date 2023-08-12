@@ -90,7 +90,7 @@ if [[ -n "$currentUser" && "$currentUser" != "loginwindow" ]]; then
 fi
 }
 
-#Open Tailscale 8 if it was open already
+#Open Tailscale if it was open already
 if [[ -e /tmp/ts_killed ]] ; then
 	runAsUser open /Applications/Tailscale.app
 	rm -rf /tmp/ts_killed
