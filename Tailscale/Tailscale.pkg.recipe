@@ -62,8 +62,15 @@
 					<key>file_content</key>
 					<string>#!/bin/bash
 
+#Variables
+TAILSCALE_PROC="Tailscale"
+
 #Kill running Tailscale
-ps -ef | grep -i /Applications/Tailscale | grep -vi grep | awk '{ print $2 }' | while read kpid ; do kill -9 $kpid ; touch /tmp/ts_killed ; done
+/usr/bin/pgrep -i "$TAILSCALE_PROC" | while read -r KILL_PID ; do 
+    echo "Killing ProcessID ${KILL_PID}..."
+    kill -9 "$KILL_PID"
+	touch /tmp/ts_killed
+done
 
 exit 0</string>
 				</dict>
