@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Description</key>
+		<string>Downloads the latest Adobe Reader and imports into Munki.
+	For OS_VERSION, 'Mac OS 10.15.0' or 'Mac OS 12.0' are valid, not 10.15 or 12.0
+
+	Additional notes:
+	- Reader ships as an installer pkg that deploys a .app
+	- Due to name changes, we add multiple variations on .app names to blocking_applications.
+	- An installs array is also generated for the .app.
+	- The preinstall_script is there to get around an oversight in the package's
+	preflight script, looking to find a user's trash folder to copy the .app into.
+	
+	Based on com.github.autopkg.munki.AdobeReader but altered to produce a PKG not a DMG
+	</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.munki.AdobeReader</string>
+		<key>Input</key>
+		<dict>
+			<key>MUNKI_REPO_SUBDIR</key>
+			<string>apps/Adobe</string>
+			<key>NAME</key>
+			<string>AdobeReader</string>
+			<key>OS_VERSION</key>
+			<string>Mac OS 12.0</string>
+			<key>pkginfo</key>
+			<dict>
+				<key>catalogs</key>
+				<array>
+					<string>testing</string>
+				</array>
+				<key>description</key>
+				<string>Adobe® Reader® is the global standard for reliably viewing, printing, and commenting on PDF documents. It's the only PDF file viewer that can open and interact with all types of PDF content, including forms and multimedia.</string>
+				<key>developer</key>
+				<string>Adobe</string>
+				<key>display_name</key>
+				<string>Adobe Reader</string>
+				<key>name</key>
+				<string>%NAME%</string>
+				<key>unattended_install</key>
+				<true />
+				<key>blocking_applications</key>
+				<array>
+					<string>Adobe Acrobat Pro.app</string>
+					<string>Adobe Acrobat Reader DC.app</string>
+					<string>Adobe Acrobat Reader.app</string>
+					<string>Adobe Acrobat.app</string>
+					<string>Adobe Reader.app</string>
+				</array>
+				<key>preinstall_script</key>
+				<string>#!/bin/sh
+	if [ -e "/Applications/Adobe Acrobat Reader.app" ]; then
+		rm -r "/Applications/Adobe Acrobat Reader.app"
+	fi
+	if [ -e "/Applications/Adobe Acrobat Reader DC.app" ]; then
+		rm -r "/Applications/Adobe Acrobat Reader DC.app"
+	fi
+	exit 0
+	</string>
+			</dict>
+		</dict>
+		<key>MinimumVersion</key>
+		<string>1.4</string>
+		<key>ParentRecipe</key>
+		<string>com.github.autopkg.pkg.AdobeReader</string>
+		<key>Process</key>
+		<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%pkg_path%</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+		</array>
+	</dict>
+</plist>
