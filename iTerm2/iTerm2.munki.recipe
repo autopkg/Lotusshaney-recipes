@@ -5,7 +5,7 @@
 		<key>Description</key>
 		<string>Downloads the current release version of iTerm2 and imports into Munki.</string>
 		<key>Identifier</key>
-		<string>io.github.hjuutilainen.munki.iTerm2</string>
+		<string>com.github.Lotusshaney.munki.iTerm2</string>
 		<key>Input</key>
 		<dict>
 			<key>NAME</key>
