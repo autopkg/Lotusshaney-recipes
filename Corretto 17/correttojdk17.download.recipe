@@ -5,7 +5,7 @@
     <key>Description</key>
 	<string>Downloads the latest version of Corretto JDK 17 as a PKG.</string>
     <key>Identifier</key>
-	<string>com.github.Lotusshaney.correttojdk17</string>
+	<string>com.github.Lotusshaney.download.correttojdk17</string>
     <key>Input</key>
     <dict>
         <key>NAME</key>
