@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Description</key>
+		<string>Downloads the latest version of Wireshark and builds a pkg.</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.pkg.Wireshark-Universal</string>
+		<key>Input</key>
+		<dict>
+			<key>NAME</key>
+			<string>Wireshark</string>
+		</dict>
+		<key>MinimumVersion</key>
+		<string>0.4.0</string>
+		<key>ParentRecipe</key>
+		<string>com.github.Lotusshaney.download.Wireshark-Universal</string>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>dmg_path</key>
+					<string>%INTEL_DMG_PATH%</string>
+				</dict>
+				<key>Processor</key>
+				<string>AppDmgVersioner</string>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/intel_scripts</string>
+					<key>pkgdirs</key>
+					<dict/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgdirs</key>
+					<dict>
+						<key>Applications</key>
+						<string>0775</string>
+					</dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/intel_pkg</string>
+				</dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>destination_path</key>
+					<string>%pkgroot%/Applications/Wireshark.app</string>
+					<key>source_path</key>
+					<string>%INTEL_DMG_PATH%/Wireshark.app</string>
+				</dict>
+				<key>Processor</key>
+				<string>Copier</string>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>FileCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>file_path</key>
+					<string>%RECIPE_CACHE_DIR%/intel_scripts/postinstall</string>
+					<key>file_mode</key>
+					<string>0755</string>
+					<key>file_content</key>
+					<string>#!/bin/bash
+
+# Determine working directory
+installDir=$(dirname $0)
+
+/usr/sbin/installer -pkg /Applications/Wireshark.app/Contents/Resources/Extras/Install\ ChmodBPF.pkg -target "$3"
+/usr/sbin/installer -pkg /Applications/Wireshark.app/Contents/Resources/Extras/Add\ Wireshark\ to\ the\ system\ path.pkg -target "$3"
+
+exit 0</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>pkg_request</key>
+					<dict>
+						<key>chown</key>
+						<array>
+							<dict>
+								<key>group</key>
+								<string>admin</string>
+								<key>path</key>
+								<string>Applications</string>
+								<key>user</key>
+								<string>root</string>
+							</dict>
+						</array>
+						<key>id</key>
+						<string>org.wireshark.Wireshark.pkg</string>
+						<key>options</key>
+						<string>purge_ds_store</string>
+						<key>pkgdir</key>
+						<string>%RECIPE_CACHE_DIR%</string>
+						<key>scripts</key>
+						<string>%RECIPE_CACHE_DIR%/intel_scripts</string>
+					</dict>
+					<key>pkgname</key>
+					<string>%NAME%-Intel-%version%</string>
+				</dict>
+				<key>Processor</key>
+				<string>PkgCreator</string>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>dmg_path</key>
+					<string>%ARM_DMG_PATH%</string>
+				</dict>
+				<key>Processor</key>
+				<string>AppDmgVersioner</string>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/arm_scripts</string>
+					<key>pkgdirs</key>
+					<dict/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgdirs</key>
+					<dict>
+						<key>Applications</key>
+						<string>0775</string>
+					</dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/arm_pkg</string>
+				</dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>destination_path</key>
+					<string>%pkgroot%/Applications/Wireshark.app</string>
+					<key>source_path</key>
+					<string>%ARM_DMG_PATH%/Wireshark.app</string>
+				</dict>
+				<key>Processor</key>
+				<string>Copier</string>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>FileCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>file_path</key>
+					<string>%RECIPE_CACHE_DIR%/arm_scripts/postinstall</string>
+					<key>file_mode</key>
+					<string>0755</string>
+					<key>file_content</key>
+					<string>#!/bin/bash
+
+# Determine working directory
+installDir=$(dirname $0)
+
+/usr/sbin/installer -pkg /Applications/Wireshark.app/Contents/Resources/Extras/Install\ ChmodBPF.pkg -target "$3"
+/usr/sbin/installer -pkg /Applications/Wireshark.app/Contents/Resources/Extras/Add\ Wireshark\ to\ the\ system\ path.pkg -target "$3"
+
+exit 0</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>pkg_request</key>
+					<dict>
+						<key>chown</key>
+						<array>
+							<dict>
+								<key>group</key>
+								<string>admin</string>
+								<key>path</key>
+								<string>Applications</string>
+								<key>user</key>
+								<string>root</string>
+							</dict>
+						</array>
+						<key>id</key>
+						<string>org.wireshark.Wireshark.pkg</string>
+						<key>options</key>
+						<string>purge_ds_store</string>
+						<key>pkgdir</key>
+						<string>%RECIPE_CACHE_DIR%</string>
+					</dict>
+					<key>pkgname</key>
+					<string>%NAME%-Arm-%version%</string>
+				</dict>
+				<key>scripts</key>
+				<string>%RECIPE_CACHE_DIR%/arm_scripts</string>
+				<key>Processor</key>
+				<string>PkgCreator</string>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/Universal/Scripts</string>
+					<key>pkgdirs</key>
+					<dict/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/Universal/pkgroot</string>
+					<key>pkgdirs</key>
+					<dict/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>FileMover</string>
+				<key>Arguments</key>
+				<dict>
+					<key>source</key>
+					<string>%RECIPE_CACHE_DIR%/%NAME%-Intel-%version%.pkg</string>
+					<key>target</key>
+					<string>%RECIPE_CACHE_DIR%/Universal/Scripts/%NAME%-Intel-%version%.pkg</string>
+					<key>overwrite</key>
+					<false/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>FileMover</string>
+				<key>Arguments</key>
+				<dict>
+					<key>source</key>
+					<string>%RECIPE_CACHE_DIR%/%NAME%-Arm-%version%.pkg</string>
+					<key>target</key>
+					<string>%RECIPE_CACHE_DIR%/Universal/Scripts/%NAME%-Arm-%version%.pkg</string>
+					<key>overwrite</key>
+					<false/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>FileCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>file_path</key>
+					<string>%RECIPE_CACHE_DIR%/Universal/Scripts/preinstall</string>
+					<key>file_mode</key>
+					<string>0755</string>
+					<key>file_content</key>
+					<string>#!/bin/bash
+
+# Determine working directory
+
+installDir=$(dirname $0)
+
+# Identify installer package names
+
+Intel_package="%NAME%-Intel-%version%.pkg"
+Apple_Silicon_package="%NAME%-Arm-%version%.pkg"
+
+# Determine if this Mac has an Intel or Apple Silicon processor
+
+processor=$( /usr/bin/arch | grep -o "arm64")
+
+if [[ -n "$processor" ]]; then
+
+/usr/sbin/installer -pkg "$Apple_Silicon_package" -target "$3"
+
+else
+
+/usr/sbin/installer -pkg "$Intel_package" -target "$3"
+
+
+fi
+
+exit 0</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkg_request</key>
+					<dict>
+						<key>pkgname</key>
+						<string>%NAME%-Universal-%version%</string>
+						<key>version</key>
+						<string>%version%</string>
+						<key>id</key>
+						<string>org.wireshark.WiresharkInstallerUniversal</string>
+						<key>scripts</key>
+						<string>%RECIPE_CACHE_DIR%/Universal/Scripts</string>
+						<key>options</key>
+						<string>purge_ds_store</string>
+					</dict>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PathDeleter</string>
+				<key>Arguments</key>
+				<dict>
+					<key>path_list</key>
+					<array>
+						<string>%RECIPE_CACHE_DIR%/arm_pkg</string>
+						<string>%RECIPE_CACHE_DIR%/intel_pkg</string>
+						<string>%RECIPE_CACHE_DIR%/Universal</string>
+						<string>%RECIPE_CACHE_DIR%/arm_scripts</string>
+						<string>%RECIPE_CACHE_DIR%/intel_scripts</string>
+					</array>
+				</dict>
+			</dict>
+		</array>
+	</dict>
+</plist>
