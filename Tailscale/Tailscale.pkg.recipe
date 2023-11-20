@@ -65,12 +65,12 @@
 #Variables
 TAILSCALE_PROC="Tailscale"
 
-#Kill running Tailscale
-/usr/bin/pgrep -i "$TAILSCALE_PROC" | while read -r KILL_PID ; do 
-    echo "Killing ProcessID ${KILL_PID}..."
-    kill -9 "$KILL_PID"
+#Kill running Tailscale using OSASCRIPT, nasty but needs to be done at gui
+if /usr/bin/pgrep -i "$TAILSCALE_PROC" ; then
+    echo "Quitting ${TAILSCALE_PROC}..."
+	osascript -e 'quit app "Tailscale"'
 	touch /tmp/ts_killed
-done
+fi
 
 exit 0</string>
 				</dict>
@@ -91,7 +91,7 @@ exit 0</string>
 runAsUser() {
 currentUser=$( echo "show State:/Users/ConsoleUser" | scutil | awk '/Name :/ { print $3 }' )
 uid=$(id -u "$currentUser")
-#Only open Tailscale if a user is logged in, and if the logged in user is not loginwindow
+#Only open if a user is logged in, and if the logged in user is not loginwindow
 if [[ -n "$currentUser" && "$currentUser" != "loginwindow" ]]; then
 	launchctl asuser "$uid" sudo -u "$currentUser" "$@"
 fi
