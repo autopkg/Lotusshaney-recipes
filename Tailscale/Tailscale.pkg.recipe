@@ -69,6 +69,8 @@ TAILSCALE_PROC="Tailscale"
 if /usr/bin/pgrep -i "$TAILSCALE_PROC" ; then
     echo "Quitting ${TAILSCALE_PROC}..."
 	osascript -e 'quit app "Tailscale"'
+	sleep 2
+	pkill -hup -i Tailscale
 	touch /tmp/ts_killed
 fi
 
