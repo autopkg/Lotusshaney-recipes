@@ -68,7 +68,6 @@ TAILSCALE_PROC="Tailscale"
 #Kill running Tailscale using OSASCRIPT, nasty but needs to be done at gui
 if /usr/bin/pgrep -i "$TAILSCALE_PROC" ; then
     echo "Quitting ${TAILSCALE_PROC}..."
-	sleep 5
 	osascript -e 'quit app "Tailscale"'
 	touch /tmp/ts_killed
 fi
