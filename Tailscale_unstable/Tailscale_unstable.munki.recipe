@@ -19,11 +19,11 @@
 				<string>testing</string>
 			</array>
 			<key>description</key>
-			<string>A secure network that just works - Zero config VPN. Installs on any device in minutes, manages firewall rules for you, and works from anywhere.</string>
+			<string>UNSTABLE TEST VERSION. A secure network that just works - Zero config VPN. Installs on any device in minutes, manages firewall rules for you, and works from anywhere.</string>
 			<key>developer</key>
 			<string>Tailscale</string>
 			<key>display_name</key>
-			<string>Tailscale</string>
+			<string>Tailscale Unstable</string>
 			<key>category</key>
 			<string>Remote Access</string>
 			<key>name</key>
