@@ -3,7 +3,7 @@
 <plist version="1.0">
 	<dict>
 		<key>Description</key>
-		<string>Downloads the latest version of Nextcloud and creates a package with a improved Post Installer.</string>
+		<string>Downloads the latest version of Nextcloud and creates a package with an improved Post Installer.</string>
 		<key>Identifier</key>
 		<string>com.github.Lotusshaney.pkg.Nextcloud</string>
 		<key>Input</key>

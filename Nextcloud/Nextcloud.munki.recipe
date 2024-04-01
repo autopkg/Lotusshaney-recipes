@@ -19,11 +19,11 @@
 					<string>testing</string>
 				</array>
 				<key>description</key>
-				<string>💻 Desktop sync client for Nextcloud</string>
+				<string>The Nextcloud Desktop Sync Client enables you to connect to your Nextcloud Server. You can create folders in your home directory, and keep the contents of those folders synced with your Nextcloud server.</string>
 				<key>developer</key>
-				<string>AgileBits Inc.</string>
+				<string>Nextcloud</string>
 				<key>display_name</key>
-				<string>Nextcloud Desktop sync client</string>
+				<string>Nextcloud Desktop Sync Client</string>
 				<key>name</key>
 				<string>%NAME%</string>
 				<key>unattended_install</key>
@@ -51,7 +51,7 @@
 								<key>type</key>
 								<string>application</string>
 								<key>CFBundleShortVersionString</key>
-								<string></string>
+								<string/>
 								<key>CFBundleVersion</key>
 								<string>%version%</string>
 							</dict>
