@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Description</key>
+		<string>Downloads the latest version of Nextcloud and creates a package with a improved Post Installer.</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.pkg.NextCloud</string>
+		<key>Input</key>
+		<dict>
+			<key>NAME</key>
+			<string>Nextcloud</string>
+		</dict>
+		<key>MinimumVersion</key>
+		<string>1.0.0</string>
+		<key>ParentRecipe</key>
+		<string>com.github.Lotusshaney.download.NextCloud</string>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/payload</string>
+					<key>pkgdirs</key>
+					<dict/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/payload/Applications</string>
+					<key>pkgdirs</key>
+					<dict/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgRootCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkgroot</key>
+					<string>%RECIPE_CACHE_DIR%/Scripts</string>
+					<key>pkgdirs</key>
+					<dict/>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>FileCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>file_path</key>
+					<string>%RECIPE_CACHE_DIR%/Scripts/preinstall</string>
+					<key>file_mode</key>
+					<string>0755</string>
+					<key>file_content</key>
+					<string>#!/bin/bash
+
+if /usr/bin/pgrep -ix "nextcloud" ; then
+	touch /tmp/nc_killed
+	pkill -9 -i nextcloud
+fi
+
+exit 0</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>FileCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>file_path</key>
+					<string>%RECIPE_CACHE_DIR%/Scripts/postinstall</string>
+					<key>file_mode</key>
+					<string>0755</string>
+					<key>file_content</key>
+					<string><![CDATA[#!/bin/bash
+
+#Define Func
+runAsUser() {
+currentUser=$( echo "show State:/Users/ConsoleUser" | /usr/sbin/scutil | /usr/bin/awk '/Name :/ { print $3 }' )
+uid=$(/usr/bin/id -u "$currentUser")
+if [[ -n "$currentUser" && "$currentUser" != "loginwindow" ]]; then
+	/bin/launchctl asuser "$uid" /usr/bin/sudo -u "$currentUser" "$@"
+fi
+}
+
+#Output temp launchD item
+/bin/cat << 'EOL' > /tmp/ncstart.plist
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.github.Lotusshaney.ncstart</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/open</string>
+		<string>-a</string>
+		<string>/Applications/Nextcloud.app</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+</dict>
+</plist>
+EOL
+/bin/chmod 644 /tmp/ncstart.plist
+
+#Open Nextcloud if it was open already
+if [[ -e /tmp/nc_killed ]] ; then
+	runAsUser /bin/launchctl load /tmp/ncstart.plist
+	/bin/sleep 2
+	runAsUser /bin/launchctl unload /tmp/ncstart.plist
+	/bin/rm -rf /tmp/nc_killed /tmp/ncstart.plist
+fi
+
+exit 0
+]]></string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>FlatPkgUnpacker</string>
+				<key>Arguments</key>
+				<dict>
+					<key>flat_pkg_path</key>
+					<string>%pathname%</string>
+					<key>destination_path</key>
+					<string>%RECIPE_CACHE_DIR%/unpack</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgPayloadUnpacker</string>
+				<key>Arguments</key>
+				<dict>
+					<key>purge_destination</key>
+					<true/>
+					<key>pkg_payload_path</key>
+					<string>%RECIPE_CACHE_DIR%/unpack/Nextcloud.pkg/Payload</string>
+					<key>destination_path</key>
+					<string>%RECIPE_CACHE_DIR%/payload</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PkgCreator</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkg_request</key>
+					<dict>
+						<key>chown</key>
+						<array>
+							<dict>
+								<key>group</key>
+								<string>wheel</string>
+								<key>path</key>
+								<string>Applications</string>
+								<key>user</key>
+								<string>root</string>
+							</dict>
+							<dict>
+								<key>group</key>
+								<string>wheel</string>
+								<key>mode</key>
+								<string>0755</string>
+								<key>path</key>
+								<string>Applications/Nextcloud.app</string>
+								<key>user</key>
+								<string>root</string>
+							</dict>
+						</array>
+						<key>pkgname</key>
+						<string>%NAME%-%version%</string>
+						<key>version</key>
+						<string>%version%</string>
+						<key>id</key>
+						<string>com.nextcloud.desktopclient</string>
+						<key>scripts</key>
+						<string>%RECIPE_CACHE_DIR%/Scripts</string>
+						<key>pkgroot</key>
+						<string>%RECIPE_CACHE_DIR%/payload</string>
+						<key>options</key>
+						<string>purge_ds_store</string>
+					</dict>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PathDeleter</string>
+				<key>Arguments</key>
+				<dict>
+					<key>path_list</key>
+					<array>
+						<string>%RECIPE_CACHE_DIR%/unpack/</string>
+						<string>%RECIPE_CACHE_DIR%/Scripts/</string>
+						<string>%RECIPE_CACHE_DIR%/payload/</string>
+					</array>
+				</dict>
+			</dict>
+		</array>
+	</dict>
+</plist>
