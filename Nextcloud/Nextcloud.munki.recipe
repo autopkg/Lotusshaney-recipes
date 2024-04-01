@@ -50,7 +50,7 @@
 								<string>/Applications/Nextcloud.app</string>
 								<key>type</key>
 								<string>application</string>
-								<key>CFBundleShortVersionString</key>
+								<key>CFBundleVersion</key>
 								<string>%version%</string>
 							</dict>
 						</array>
