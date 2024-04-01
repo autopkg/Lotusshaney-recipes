@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the current release version of 1Password 8.</string>
 	<key>Identifier</key>
-	<string>com.github.Lotusshaney.download.NextCloud</string>
+	<string>com.github.Lotusshaney.download.Nextcloud</string>
 	<key>Input</key>
 	<dict>
 		<key>NAME</key>

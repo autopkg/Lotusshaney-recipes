@@ -23,7 +23,7 @@
 				<key>developer</key>
 				<string>AgileBits Inc.</string>
 				<key>display_name</key>
-				<string>Nextcloud GmbH</string>
+				<string>Nextcloud Desktop sync client</string>
 				<key>name</key>
 				<string>%NAME%</string>
 				<key>unattended_install</key>
@@ -33,7 +33,7 @@
 		<key>MinimumVersion</key>
 		<string>1.0.0</string>
 		<key>ParentRecipe</key>
-		<string>com.github.Lotusshaney.pkg.NextCloud</string>
+		<string>com.github.Lotusshaney.pkg.Nextcloud</string>
 		<key>Process</key>
 		<array>
 			<dict>
