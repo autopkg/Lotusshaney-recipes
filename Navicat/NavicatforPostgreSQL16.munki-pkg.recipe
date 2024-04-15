@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Description</key>
+		<string>Downloads the latest version of Navicat for PostgreSQL 16 and imports it into Munki as a PKG.</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.munki.NavicatforPostgreSQL16-pkg</string>
+		<key>Input</key>
+		<dict>
+			<key>MUNKI_REPO_SUBDIR</key>
+			<string>apps/%NAME%</string>
+			<key>NAME</key>
+			<string>Navicat for PostgreSQL</string>
+			<key>pkginfo</key>
+			<dict>
+				<key>catalogs</key>
+				<array>
+					<string>testing</string>
+				</array>
+				<key>description</key>
+				<string>Navicat for PostgreSQL is an easy-to-use graphical tool for PostgreSQL database development. From writing simple SQL queries to developing complex databases, Navicat for PostgreSQL is designed to accommodate a wide range of users, from PostgreSQL beginners to seasoned developers. Connect to local/remote PostgreSQL servers and compatible with cloud databases like Amazon Redshift, Amazon Aurora, Amazon RDS, Google Cloud and Microsoft Azure, and all PostgreSQL database objects.</string>
+				<key>developer</key>
+				<string>PremiumSoft</string>
+				<key>display_name</key>
+				<string>Navicat for PostgreSQL</string>
+				<key>name</key>
+				<string>%NAME%</string>
+				<key>unattended_install</key>
+				<true/>
+			</dict>
+		</dict>
+		<key>MinimumVersion</key>
+		<string>2.3</string>
+		<key>ParentRecipe</key>
+		<string>com.github.apizz.pkg.NavicatPostgreSQL16</string>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>additional_pkginfo</key>
+					<dict>
+						<key>installs</key>
+						<array>
+							<dict>
+								<key>path</key>
+								<string>/Applications/Navicat for PostgreSQL.app</string>
+								<key>type</key>
+								<string>application</string>
+								<key>CFBundleShortVersionString</key>
+								<string>%version%</string>
+							</dict>
+						</array>
+					</dict>
+				</dict>
+				<key>Processor</key>
+				<string>MunkiPkginfoMerger</string>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>pkg_path</key>
+					<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+					<key>repo_subdirectory</key>
+					<string>%MUNKI_REPO_SUBDIR%</string>
+				</dict>
+				<key>Processor</key>
+				<string>MunkiImporter</string>
+			</dict>
+		</array>
+	</dict>
+</plist>
