@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Description</key>
+		<string>Downloads the current release version of PyCharm Professional Edition and creates a package.</string>
+		<key>Comment</key>
+		<string>For the ARCH_TYPE variable use "mac" for Intel, use "macM1" for Apple Silicon</string>
+		<key>Comment</key>
+		<string>And for the SUPPORTED_ARCH variable use "x86_64" for Intel, use "arm64" for Apple Silicon.  NOTE: BOTH ARCH_TYPE and SUPPORTED_ARCH MUST be set</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.pkg.pycharmpe</string>
+		<key>Input</key>
+		<dict>
+			<key>NAME</key>
+			<string>PyCharm Professional Edition</string>
+			<key>ARCH_TYPE</key>
+			<string>macM1</string>
+			<key>SUPPORTED_ARCH</key>
+			<string>arm64</string>
+		</dict>
+		<key>MinimumVersion</key>
+		<string>2.3</string>
+		<key>ParentRecipe</key>
+		<string>com.github.bnpl.autopkg.download.pycharmpe</string>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>pkg_path</key>
+					<string>%RECIPE_CACHE_DIR%/%NAME%-%SUPPORTED_ARCH%-%version%.pkg</string>
+				</dict>
+				<key>Processor</key>
+				<string>AppPkgCreator</string>
+			</dict>
+		</array>
+	</dict>
+</plist>
