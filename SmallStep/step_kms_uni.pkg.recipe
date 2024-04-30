@@ -312,11 +312,15 @@
         <dict>
           <key>file_content</key>
           <string>#!/bin/zsh
-# Determine working directory installDir=$(dirname $0)
+# Determine working directory
+installDir=$(dirname $0)
 
-# Identify installer package names Intel_package="%NAME%-%version%-amd64.pkg" Apple_Silicon_package="%NAME%-%version%-arm64.pkg"
+# Identify installer package names
+Intel_package="%NAME%-%version%-amd64.pkg"
+Apple_Silicon_package="%NAME%-%version%-arm64.pkg"
 
-# Determine if this Mac has an Intel or Apple Silicon processor processor=$(/usr/bin/uname -m | grep -o "x86_64")
+# Determine if this Mac has an Intel or Apple Silicon processor
+processor=$(/usr/bin/uname -m | grep -o "x86_64")
 
 if [[ -n "$processor" ]]; then
   /usr/sbin/installer -pkg "$installDir"/"$Intel_package" -target "$3"
