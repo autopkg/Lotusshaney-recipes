@@ -1,60 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>Description</key>
-	<string>Downloads the latest version of Glean and imports it into Munki.</string>
-	<key>Identifier</key>
-	<string>com.github.Lotusshaney.munki.Glean</string>
-	<key>Input</key>
 	<dict>
-		<key>MUNKI_REPO_SUBDIR</key>
-		<string>apps/%NAME%</string>
-		<key>NAME</key>
-		<string>Glean</string>
-		<key>pkginfo</key>
+		<key>Description</key>
+		<string>Downloads the latest version of Glean and imports it into Munki.</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.munki.Glean</string>
+		<key>Input</key>
 		<dict>
-			<key>blocking_applications</key>
-			<array>
-				<string>Glean Helper.app</string>
-				<string>Glean Helper (Plugin).app</string>
-				<string>Glean Helper (Renderer).app</string>
-				<string>Glean Helper (GPU).app</string>
-				<string>Glean.app</string>
-			</array>
-			<key>catalogs</key>
-			<array>
-				<string>testing</string>
-			</array>
-			<key>description</key>
-			<string>Search with generative AI you can trust.</string>
-			<key>developer</key>
+			<key>MUNKI_REPO_SUBDIR</key>
+			<string>apps/%NAME%</string>
+			<key>NAME</key>
 			<string>Glean</string>
-			<key>display_name</key>
-			<string>Glean</string>
-			<key>name</key>
-			<string>%NAME%</string>
-			<key>unattended_install</key>
-			<true/>
-		</dict>
-	</dict>
-	<key>MinimumVersion</key>
-	<string>2.3</string>
-	<key>ParentRecipe</key>
-	<string>com.github.Lotusshaney.download.Glean</string>
-	<key>Process</key>
-	<array>
-		<dict>
-			<key>Arguments</key>
+			<key>pkginfo</key>
 			<dict>
-				<key>pkg_path</key>
-				<string>%pathname%</string>
-				<key>repo_subdirectory</key>
-				<string>%MUNKI_REPO_SUBDIR%</string>
+				<key>blocking_applications</key>
+				<array>
+					<string>Glean Helper.app</string>
+					<string>Glean Helper (Plugin).app</string>
+					<string>Glean Helper (Renderer).app</string>
+					<string>Glean Helper (GPU).app</string>
+					<string>Glean.app</string>
+				</array>
+				<key>catalogs</key>
+				<array>
+					<string>testing</string>
+				</array>
+				<key>description</key>
+				<string>Search with generative AI you can trust.</string>
+				<key>developer</key>
+				<string>Glean</string>
+				<key>display_name</key>
+				<string>Glean</string>
+				<key>name</key>
+				<string>%NAME%</string>
+				<key>unattended_install</key>
+				<true/>
 			</dict>
-			<key>Processor</key>
-			<string>MunkiImporter</string>
 		</dict>
-	</array>
-</dict>
+		<key>MinimumVersion</key>
+		<string>2.3</string>
+		<key>ParentRecipe</key>
+		<string>com.github.Lotusshaney.pkg.Glean</string>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>additional_pkginfo</key>
+					<dict>
+						<key>installs</key>
+						<array>
+							<dict>
+								<key>path</key>
+								<string>/Applications/Glean.app</string>
+								<key>type</key>
+								<string>application</string>
+								<key>CFBundleShortVersionString</key>
+								<string>%version%</string>
+							</dict>
+						</array>
+					</dict>
+				</dict>
+				<key>Processor</key>
+				<string>MunkiPkginfoMerger</string>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>pkg_path</key>
+					<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+					<key>repo_subdirectory</key>
+					<string>%MUNKI_REPO_SUBDIR%</string>
+				</dict>
+				<key>Processor</key>
+				<string>MunkiImporter</string>
+			</dict>
+		</array>
+	</dict>
 </plist>
