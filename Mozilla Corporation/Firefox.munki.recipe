@@ -79,7 +79,7 @@ compareVersions() {
 	echo "Both versions are equal"
 	return 1
 }
-}
+
 
 FIREFOX_LOCATION="/Applications/Firefox.app"
 PKG_VERSION="%version%"
