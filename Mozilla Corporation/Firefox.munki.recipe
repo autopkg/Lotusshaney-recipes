@@ -53,11 +53,33 @@
 							</dict>
 						</array>
 						<key>installcheck_script</key>
-						<string>#!/bin/zsh
+						<string><![CDATA[#!/bin/zsh
 
 #shellcheck shell=bash
 
 #Firefox build type installed
+
+#Functions
+#This function gets around issues that arises because string comparison in Shell compares character by character lexicographically.
+#We can convert each version component into integers and compare them numerically.
+compareVersions() {
+    local IFS=.
+    local ver1=($1)
+    local ver2=($2)
+    local i=""
+
+    for i in {0..2}; do
+        if ((10#${ver1[i]} > 10#${ver2[i]})); then
+            #echo "Version $1 is greater than $2"
+            return 0
+        elif ((10#${ver1[i]} < 10#${ver2[i]})); then
+            #echo "Version $2 is greater than $1"
+            return 1
+        fi
+    done
+    echo "Both versions are equal"
+	return 1
+}
 
 FIREFOX_LOCATION="/Applications/Firefox.app"
 PKG_VERSION="%version%"
@@ -69,12 +91,12 @@ if [[ -d "${FIREFOX_LOCATION}" ]]; then
 			exit 1
 		else
 			echo "FireFox Detected..."
-			INSTALLED_VERSION="$( /usr/bin/defaults read  ${FIREFOX_LOCATION}/Contents/Info.plist CFBundleShortVersionString )"
-			if [[ "${PKG_VERSION}" &gt; "${INSTALLED_VERSION}" ]]; then
-				echo "${PKG_VERSION} &gt; ${INSTALLED_VERSION}, Installing..."
+			INSTALLED_VERSION="$( /usr/bin/defaults read ${FIREFOX_LOCATION}/Contents/Info.plist CFBundleShortVersionString )"
+			if compareVersions "${PKG_VERSION}" "${INSTALLED_VERSION}" ; then
+				echo "${PKG_VERSION} > ${INSTALLED_VERSION}, Installing..."
 				exit 0
 			else
-				echo "${PKG_VERSION} !&gt; ${INSTALLED_VERSION}, Skipping..."
+				echo "${PKG_VERSION} !> ${INSTALLED_VERSION}, Skipping..."
 				exit 1
 			fi
 		fi
@@ -84,7 +106,7 @@ else
 	exit 1
 fi
 
-exit 0</string>
+exit 0]]></string>
 					</dict>
 				</dict>
 				<key>Processor</key>
