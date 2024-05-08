@@ -68,7 +68,6 @@ if [[ -d "${FIREFOX_LOCATION}" ]]; then
 			echo "FireFox ESR Detected, Skipping..."
 			exit 1
 		else
-			echo "FireFox Detected, Skipping..."
 			INSTALLED_VERSION="$( /usr/bin/defaults read  ${FIREFOX_LOCATION}/Contents/Info.plist CFBundleShortVersionString )"
 			if [[ "${PKG_VERSION}" &gt; "${INSTALLED_VERSION}" ]]; then
 				echo "${PKG_VERSION} &gt; ${INSTALLED_VERSION}, Installing..."
