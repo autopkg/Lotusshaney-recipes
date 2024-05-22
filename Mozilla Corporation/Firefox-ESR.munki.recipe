@@ -63,21 +63,19 @@
 #This function gets around issues that arises because string comparison in Shell compares character by character lexicographically.
 #We can convert each version component into integers and compare them numerically.
 compareVersions() {
-	local ver1 ver2
-	ver1=("${(s:.:)1}")
-	ver2=("${(s:.:)2}")
+    local ver1 ver2
+    ver1=("${(s:.:)1}")
+    ver2=("${(s:.:)2}")
 
-	for i in {1..3}; do
-	   if ((${ver1[$i]} > ${ver2[$i]})); then
-	       #echo "Version $1 is greater than $2"
-	       return 0
-	   elif ((${ver1[$i]} < ${ver2[$i]})); then
-	       #echo "Version $2 is greater than $1"
-	       return 1
-	   fi
-	done
-	echo "Both versions are equal"
-	return 1
+    for i in {1..3}; do
+        if (( ver1[i] > ver2[i] )); then
+            return 0
+        elif (( ver1[i] < ver2[i] )); then
+            return 1
+        fi
+    done
+    echo "Both versions are equal"
+    return 1
 }
 
 FIREFOX_LOCATION="/Applications/Firefox.app"
