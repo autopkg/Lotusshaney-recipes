@@ -57,6 +57,19 @@
                     <string>%MUNKI_ARCHITECTURE% != arm64 AND %MUNKI_ARCHITECTURE% != x86_64</string>
                 </dict>
             </dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>old_version_number</key>
+					<string>%version%</string>
+	                <key>input_plist_path</key>
+					<string>%pathname%/8x8 Work.app/Contents/Info.plist</string>
+					<key>plist_version_key</key>
+					<string>CFBundleShortVersionString</string>
+				</dict>
+				<key>Processor</key>
+				<string>Versioner</string>
+			</dict>
             <dict>
                 <key>Arguments</key>
                 <dict>
@@ -83,6 +96,8 @@
                 <string>MunkiImporter</string>
                 <key>Arguments</key>
                 <dict>
+					<key>version</key>
+					<string>%old_version_number%</string>
                     <key>pkg_path</key>
                     <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
                     <key>repo_subdirectory</key>
