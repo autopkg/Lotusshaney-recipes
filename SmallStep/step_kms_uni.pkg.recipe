@@ -357,7 +357,7 @@ exit 0
             <key>options</key>
             <string>purge_ds_store</string>
             <key>pkgname</key>
-            <string>%NAME%-%version%-Universal</string>
+            <string>%NAME%-Universal-%version%</string>
             <key>scripts</key>
             <string>%RECIPE_CACHE_DIR%/Universal/Scripts</string>
             <key>version</key>
