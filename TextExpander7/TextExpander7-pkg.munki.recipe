@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of TextExpander 7 and imports into a munki_repo as a PKG.</string>
+	<key>Identifier</key>
+	<string>com.github.Lotusshaney.munki.TextExpander7-pkg</string>
+	<key>Input</key>
+	<dict>
+		<key>NAME</key>
+		<string>TextExpander</string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>apps</string>
+		<key>MUNKI_CATEGORY</key>
+		<string>Utilities</string>
+		<key>MUNKI_DEVELOPER</key>
+		<string>SmileOnMyMac</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>category</key>
+			<string>%MUNKI_CATEGORY%</string>
+			<key>description</key>
+			<string>Imagine never typing the same email address, chunk of code, brand message, directions or data more than once. Store them in a snippet—a keyboard shortcut you create. Use them for yourself, share them with your team, update across all your devices.</string>
+			<key>developer</key>
+			<string>%MUNKI_DEVELOPER%</string>
+			<key>display_name</key>
+			<string>TextExpander 7</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>unattended_install</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>1.1</string>
+	<key>ParentRecipe</key>
+	<string>io.github.hjuutilainen.pkg.TextExpander7</string>
+	<key>Process</key>
+		<array>
+	<dict>
+		<key>Arguments</key>
+		<dict>
+			<key>additional_pkginfo</key>
+			<dict>
+				<key>installs</key>
+				<array>
+					<dict>
+						<key>path</key>
+						<string>/Applications/TextExpander.app</string>
+						<key>type</key>
+						<string>application</string>
+						<key>CFBundleShortVersionString</key>
+						<string>%version%</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+		<key>Processor</key>
+		<string>MunkiPkginfoMerger</string>
+	</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
