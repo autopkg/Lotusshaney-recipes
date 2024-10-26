@@ -54,6 +54,10 @@
 						<string>%version%</string>
 					</dict>
 				</array>
+				<key>postinstall_script</key>
+					<string><![CDATA[#!/bin/bash
+chmod 777 /Applications/Slack.app &>/dev/null
+exit 0]]></string>			
 			</dict>
 		</dict>
 		<key>Processor</key>
