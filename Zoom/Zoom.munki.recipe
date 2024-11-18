@@ -1,95 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>Description</key>
-	<string>Downloads the latest version of Zoom and imports it into Munki as a PKG.</string>
-	<key>Identifier</key>
-	<string>com.github.Lotusshaney.munki.zoomus</string>
-	<key>Input</key>
 	<dict>
-		<key>MUNKI_REPO_SUBDIR</key>
-		<string>apps/Zoom</string>
-		<key>NAME</key>
-		<string>Zoom</string>
-		<key>pkginfo</key>
+		<key>Description</key>
+		<string>Downloads the latest version of Zoom and imports it into Munki as a PKG.</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.munki.zoomus</string>
+		<key>Input</key>
 		<dict>
-			<key>blocking_applications</key>
-			<array>
-				<string>zoom.us</string>
-			</array>
-			<key>catalogs</key>
-			<array>
-				<string>testing</string>
-			</array>
-			<key>description</key>
-			<string>The Zoom app provides cloud-hosted video conferencing, plus online meetings and group messaging.</string>
-			<key>developer</key>
-			<string>Zoom Video Communications, Inc.</string>
-			<key>display_name</key>
+			<key>MUNKI_REPO_SUBDIR</key>
+			<string>apps/Zoom</string>
+			<key>NAME</key>
 			<string>Zoom</string>
-			<key>minimum_os_version</key>
-			<string>10.7</string>
-			<key>name</key>
-			<string>%NAME%</string>
-			<key>postuninstall_script</key>
-			<string>#!/bin/sh
+			<key>pkginfo</key>
+			<dict>
+				<key>blocking_applications</key>
+				<array>
+					<string>zoom.us</string>
+				</array>
+				<key>catalogs</key>
+				<array>
+					<string>testing</string>
+				</array>
+				<key>description</key>
+				<string>The Zoom app provides cloud-hosted video conferencing, plus online meetings and group messaging.</string>
+				<key>developer</key>
+				<string>Zoom Video Communications, Inc.</string>
+				<key>display_name</key>
+				<string>Zoom</string>
+				<key>minimum_os_version</key>
+				<string>10.7</string>
+				<key>name</key>
+				<string>%NAME%</string>
+				<key>postuninstall_script</key>
+				<string>#!/bin/sh
 rm -rf /Applications/zoom.us.app
 </string>
-			<key>unattended_install</key>
-			<true/>
-		</dict>
-	</dict>
-	<key>MinimumVersion</key>
-	<string>1.1</string>
-	<key>ParentRecipe</key>
-	<string>com.github.Lotusshaney.pkg.zoomus</string>
-	<key>Process</key>
-	<array>
-		<dict>
-			<key>Arguments</key>
-			<dict>
-				<key>faux_root</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
-				<key>installs_item_paths</key>
-				<array>
-					<string>/Applications/zoom.us.app</string>
-				</array>
-				<key>version_comparison_key</key>
-				<string>CFBundleVersion</string>
+				<key>unattended_install</key>
+				<true/>
 			</dict>
-			<key>Processor</key>
-			<string>MunkiInstallsItemsCreator</string>
 		</dict>
-		<dict>
-			<key>Processor</key>
-			<string>MunkiPkginfoMerger</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
+		<key>MinimumVersion</key>
+		<string>1.1</string>
+		<key>ParentRecipe</key>
+		<string>com.github.Lotusshaney.pkg.zoomus</string>
+		<key>Process</key>
+		<array>
 			<dict>
-				<key>additional_pkginfo</key>
+				<key>Arguments</key>
 				<dict>
-					<key>minimum_os_version</key>
-					<string>%min_os_version%</string>
-					<key>version</key>
-					<string>%version%</string>
+					<key>additional_pkginfo</key>
+					<dict>
+						<key>installs</key>
+						<array>
+							<dict>
+								<key>path</key>
+								<string>/Applications/zoom.us.app</string>
+								<key>type</key>
+								<string>application</string>
+								<key>CFBundleShortVersionString</key>
+								<string>%version%</string>
+								<key>minimum_os_version</key>
+								<string>%min_os_version%</string>
+							</dict>
+						</array>
+					</dict>
 				</dict>
+				<key>Processor</key>
+				<string>MunkiPkginfoMerger</string>
 			</dict>
-			<key>Processor</key>
-			<string>MunkiPkginfoMerger</string>
-		</dict>
-		<dict>
-			<key>Arguments</key>
 			<dict>
-				<key>repo_subdirectory</key>
-				<string>%MUNKI_REPO_SUBDIR%</string>
-				<key>version_comparison_key</key>
-				<string>CFBundleVersion</string>
+				<key>Arguments</key>
+				<dict>
+					<key>repo_subdirectory</key>
+					<string>%MUNKI_REPO_SUBDIR%</string>
+				</dict>
+				<key>Processor</key>
+				<string>MunkiImporter</string>
 			</dict>
-			<key>Processor</key>
-			<string>MunkiImporter</string>
-		</dict>
-	</array>
-</dict>
+		</array>
+	</dict>
 </plist>
