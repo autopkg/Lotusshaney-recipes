@@ -58,10 +58,12 @@ rm -rf /Applications/zoom.us.app
 								<string>/Applications/zoom.us.app</string>
 								<key>type</key>
 								<string>application</string>
-								<key>CFBundleShortVersionString</key>
+								<key>CFBundleVersion</key>
 								<string>%version%</string>
 								<key>minimum_os_version</key>
 								<string>%min_os_version%</string>
+								<key>version_comparison_key</key>
+								<string>CFBundleVersion</string>
 							</dict>
 						</array>
 					</dict>
