@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Description</key>
+		<string>Downloads the latest version of SQLPro for Postgres and creates a package.</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.pkg.SQLProforPostgres</string>
+		<key>Input</key>
+		<dict>
+			<key>NAME</key>
+			<string>SQLPro for Postgres</string>
+		</dict>
+		<key>MinimumVersion</key>
+		<string>2.3</string>
+		<key>ParentRecipe</key>
+		<string>com.github.Lotusshaney.download.SQLProforPostgres</string>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>app_path</key>
+					<string>%RECIPE_CACHE_DIR%/%NAME%/SQLPro for Postgres.app</string>
+				</dict>
+				<key>Processor</key>
+				<string>AppPkgCreator</string>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>PathDeleter</string>
+				<key>Arguments</key>
+				<dict>
+					<key>path_list</key>
+					<array>
+						<string>%RECIPE_CACHE_DIR%/SQLPro for Postgres</string>
+					</array>
+				</dict>
+			</dict>
+		</array>
+	</dict>
+</plist>
