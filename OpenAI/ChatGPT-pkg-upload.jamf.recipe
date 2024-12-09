@@ -5,7 +5,7 @@
 	<key>Description</key>
 	<string>Downloads the latest version of ChatGPT and uploads the package to Jamf.</string>
 	<key>Identifier</key>
-	<string>com.github.Lotusshaney.jamf.ChatGPT</string>
+	<string>com.github.Lotusshaney.jamf.ChatGPT-pkg</string>
 	<key>Input</key>
 	<dict>
 		<key>CATEGORY</key>
