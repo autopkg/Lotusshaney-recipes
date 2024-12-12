@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Description</key>
+		<string>Downloads the latest release dmg version of Azul Zulu Java for
+given Java version, architecture, and bundle type (JDK/JRE),
+and copies the package.
+Architectures: x86, arm
+Bundle Types: jre, jdk, jre_fx, jdk_fx
+</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.pkg.AzulZuluJava</string>
+		<key>ParentRecipe</key>
+		<string>com.github.Lotusshaney.download.AzulZuluJava</string>
+		<key>MinimumVersion</key>
+		<string>2.3.0</string>
+		<key>Input</key>
+		<dict>
+			<key>NAME</key>
+			<string>AzulZuluJava</string>
+			<key>JAVA_MAJOR_VERSION</key>
+			<string>17</string>
+			<key>ARCHITECTURE</key>
+			<string>x86</string>
+			<key>DOWNLOAD_FILE_EXTENSION</key>
+			<string>dmg</string>
+			<key>BUNDLE_TYPE</key>
+			<string>jdk</string>
+		</dict>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Processor</key>
+				<string>PkgCopier</string>
+				<key>Arguments</key>
+				<dict>
+					<key>source_pkg</key>
+					<string>%pathname%/*.pkg</string>
+					<key>pkg_path</key>
+					<string>%RECIPE_CACHE_DIR%/%NAME%_%java_version%.%openjdk_build_number%_%BUNDLE_TYPE%_%ARCHITECTURE%-%version%.pkg</string>
+				</dict>
+			</dict>
+			<dict>
+				<key>Processor</key>
+				<string>CodeSignatureVerifier</string>
+				<key>Arguments</key>
+				<dict>
+					<key>input_path</key>
+					<string>%pkg_path%</string>
+					<key>expected_authority_names</key>
+					<array>
+						<string>Developer ID Installer: Azul Systems, Inc. (TDTHCUPYFR)</string>
+						<string>Developer ID Certification Authority</string>
+						<string>Apple Root CA</string>
+					</array>
+				</dict>
+			</dict>
+		</array>
+	</dict>
+</plist>
