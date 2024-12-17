@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Imports Eclipse to Munki as a PKG
+
+Use the ARCHITECTURE input variable to specify whether you want to download the
+Intel ("x86_64") or Apple Silicon ("aarch64") version of Eclipse.
+
+Use the ECLIPSE_CODE input variable to specify the IDE version.
+Eclipse IDE for C/C++ Developers: cpp
+Eclipse IDE for Embedded C/C++ Developers: embedcpp
+Eclipse IDE for Eclipse Committers: committers
+Eclipse IDE for Java Developers: java
+Eclipse IDE for Enterprise Java and Web Developers: jee
+Eclipse IDE for Java and DSL Developers: dsl
+Eclipse Modeling Tools: modeling
+Eclipse IDE for PHP Developers: php
+Eclipse IDE for RCP and RAP Developers: rcp
+Eclipse IDE for Scientific Computing: parallel
+Eclipse IDE for Scout Developers: scout
+
+For the SUPPORTED_ARCH variable use "x86_64" for Intel, use "arm64" for Apple Silicon.  NOTE: BOTH ARCH_TYPE and SUPPORTED_ARCH MUST be set</string>
+	<key>Identifier</key>
+	<string>com.github.Lotusshaney.munki.Eclipse-pkg</string>
+	<key>Input</key>
+	<dict>
+		<key>ARCHITECTURE</key>
+		<string>aarch64</string>
+		<key>SUPPORTED_ARCH</key>
+		<string>arm64</string>
+		<key>ECLIPSE_CODE</key>
+		<string>java</string>
+		<key>NAME</key>
+		<string>Eclipse</string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>apps/%NAME%/%SUPPORTED_ARCH%</string>
+		<key>NAME</key>
+		<string>Eclipse</string>
+		<key>SELECTION</key>
+		<string>Eclipse IDE for Java Developers</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>category</key>
+			<string>Developer</string>
+			<key>description</key>
+			<string>The essential tools for any Java developer, including a Java IDE, a CVS client, Git client, XML Editor, Mylyn, Maven integration...</string>
+			<key>developer</key>
+			<string>Eclipse Foundation</string>
+			<key>display_name</key>
+			<string>Eclipse IDE for Java Developers</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>unattended_install</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>0.4.3</string>
+	<key>ParentRecipe</key>
+	<string>com.github.homebysix.pkg.Eclipse</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>faux_root</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%</string>
+				<key>installs_item_paths</key>
+				<array>
+					<string>/Applications/%NAME%.app</string>
+				</array>
+				<key>version_comparison_key</key>
+				<string>CFBundleShortVersionString</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiInstallsItemsCreator</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+				<dict>
+					<key>additional_pkginfo</key>
+					<dict>
+						<key>supported_architectures</key>
+						<array>
+							<string>%SUPPORTED_ARCH%</string>
+						</array>
+					</dict>
+				</dict>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%RECIPE_CACHE_DIR%/%NAME%-%ARCHITECTURE%-%version%.pkg</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>path_list</key>
+				<array>
+					<string>%RECIPE_CACHE_DIR%/%NAME%/</string>
+				</array>
+			</dict>
+			<key>Processor</key>
+			<string>PathDeleter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
