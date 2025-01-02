@@ -33,7 +33,7 @@
 	<key>MinimumVersion</key>
 	<string>2.3</string>
 	<key>ParentRecipe</key>
-	<string>com.github.peshay.download.draw.io</string>
+	<string>com.github.autopkg.gregneagle-recipes.download.PodmanDesktop</string>
 	<key>Process</key>
 	<array>
 		<dict>
