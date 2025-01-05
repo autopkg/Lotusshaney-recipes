@@ -14,7 +14,7 @@
 	<key>MinimumVersion</key>
 	<string>2.3</string>
 	<key>ParentRecipe</key>
-	<string>com.github.Lotusshaney.download.PodmanDesktop</string>
+	<string>com.github.autopkg.gregneagle-recipes.download.PodmanDesktop</string>
 	<key>Process</key>
 	<array>
 		<dict>
