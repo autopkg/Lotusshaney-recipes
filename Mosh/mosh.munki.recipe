@@ -33,7 +33,7 @@
 		<key>MinimumVersion</key>
 		<string>1.0.0</string>
 		<key>ParentRecipe</key>
-		<string>com.github.Lotusshaney.download.mosh</string>
+		<string>com.github.Lotusshaney.pkg.mosh</string>
 		<key>Process</key>
 		<array>
 			<dict>
