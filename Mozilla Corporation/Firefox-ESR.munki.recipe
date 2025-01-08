@@ -8,6 +8,8 @@
 		<string>com.github.Lotusshaney.munki.Firefox-ESR</string>
 		<key>Input</key>
 		<dict>
+			<key>RELEASE</key>
+			<string>esr-latest</string>
 			<key>MUNKI_REPO_SUBDIR</key>
 			<string>apps/%NAME%</string>
 			<key>NAME</key>
@@ -33,7 +35,7 @@
 		<key>MinimumVersion</key>
 		<string>2.3</string>
 		<key>ParentRecipe</key>
-		<string>com.github.Lotusshaney.pkg.Firefox-ESR</string>
+		<string>com.github.autopkg.pkg.Firefox_EN</string>
 		<key>Process</key>
 		<array>
 			<dict>

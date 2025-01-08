@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>Description</key>
-	<string>Downloads the latest version of Firefox and imports it into Munki. Use as a Managed Install as it automatically works as a Managed Update</string>
-	<key>Identifier</key>
-	<string>com.github.Lotusshaney.munki.Firefox</string>
-	<key>Input</key>
 	<dict>
-		<key>MUNKI_REPO_SUBDIR</key>
-		<string>apps/%NAME%</string>
-		<key>NAME</key>
-		<string>Firefox</string>
-		<key>pkginfo</key>
+		<key>Description</key>
+		<string>Downloads the latest version of Firefox and imports it into Munki. Use as a Managed Install as it automatically works as a Managed Update</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.munki.Firefox</string>
+		<key>Input</key>
 		<dict>
-			<key>catalogs</key>
-			<array>
-				<string>testing</string>
-			</array>
-			<key>description</key>
-			<string>Fast, safe Web browser.</string>
-			<key>developer</key>
-			<string>Mozilla Corporation</string>
-			<key>display_name</key>
+			<key>RELEASE</key>
+			<string>latest</string>
+			<key>MUNKI_REPO_SUBDIR</key>
+			<string>apps/%NAME%</string>
+			<key>NAME</key>
 			<string>Firefox</string>
-			<key>name</key>
-			<string>%NAME%</string>
-			<key>unattended_install</key>
-			<true/>
+			<key>pkginfo</key>
+			<dict>
+				<key>catalogs</key>
+				<array>
+					<string>testing</string>
+				</array>
+				<key>description</key>
+				<string>Fast, safe Web browser.</string>
+				<key>developer</key>
+				<string>Mozilla Corporation</string>
+				<key>display_name</key>
+				<string>Firefox</string>
+				<key>name</key>
+				<string>%NAME%</string>
+				<key>unattended_install</key>
+				<true/>
+			</dict>
 		</dict>
-	</dict>
-	<key>MinimumVersion</key>
-	<string>2.3</string>
-	<key>ParentRecipe</key>
-	<string>com.github.Lotusshaney.pkg.Firefox</string>
-	<key>Process</key>
-	<array>
+		<key>MinimumVersion</key>
+		<string>2.3</string>
+		<key>ParentRecipe</key>
+		<string>com.github.autopkg.pkg.Firefox_EN</string>
+		<key>Process</key>
+		<array>
 			<dict>
 				<key>Arguments</key>
 				<dict>
@@ -79,8 +81,7 @@ compareVersions() {
 }
 
 
-FIREFOX_LOCATION="/Applications/Firefox.app"
-PKG_VERSION="%version%"
+FIREFOX_LOCATION="/Applications/Firefox.app" PKG_VERSION="%version%"
 
 if [[ -d "${FIREFOX_LOCATION}" ]]; then
 	if [[ -f "${FIREFOX_LOCATION}"/Contents/Resources/application.ini ]]; then
@@ -88,8 +89,7 @@ if [[ -d "${FIREFOX_LOCATION}" ]]; then
 			echo "FireFox ESR Detected, Skipping..."
 			exit 1
 		else
-			echo "FireFox Detected..."
-			INSTALLED_VERSION="$( /usr/bin/defaults read ${FIREFOX_LOCATION}/Contents/Info.plist CFBundleShortVersionString )"
+			echo "FireFox Detected..." INSTALLED_VERSION="$( /usr/bin/defaults read ${FIREFOX_LOCATION}/Contents/Info.plist CFBundleShortVersionString )"
 			if compareVersions "${PKG_VERSION}" "${INSTALLED_VERSION}" ; then
 				echo "${PKG_VERSION} > ${INSTALLED_VERSION}, Installing..."
 				exit 0
@@ -110,17 +110,17 @@ exit 0]]></string>
 				<key>Processor</key>
 				<string>MunkiPkginfoMerger</string>
 			</dict>
-		<dict>
-			<key>Arguments</key>
 			<dict>
-				<key>pkg_path</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
-				<key>repo_subdirectory</key>
-				<string>%MUNKI_REPO_SUBDIR%</string>
+				<key>Arguments</key>
+				<dict>
+					<key>pkg_path</key>
+					<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+					<key>repo_subdirectory</key>
+					<string>%MUNKI_REPO_SUBDIR%</string>
+				</dict>
+				<key>Processor</key>
+				<string>MunkiImporter</string>
 			</dict>
-			<key>Processor</key>
-			<string>MunkiImporter</string>
-		</dict>
-	</array>
-</dict>
+		</array>
+	</dict>
 </plist>
