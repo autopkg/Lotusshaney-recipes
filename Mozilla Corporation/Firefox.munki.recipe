@@ -81,7 +81,8 @@ compareVersions() {
 }
 
 
-FIREFOX_LOCATION="/Applications/Firefox.app" PKG_VERSION="%version%"
+FIREFOX_LOCATION="/Applications/Firefox.app"
+PKG_VERSION="%version%"
 
 if [[ -d "${FIREFOX_LOCATION}" ]]; then
 	if [[ -f "${FIREFOX_LOCATION}"/Contents/Resources/application.ini ]]; then
