@@ -3,7 +3,7 @@
 <plist version="1.0">
 	<dict>
 		<key>Description</key>
-		<string>Downloads the current release version of Spotify and imports into Munki as a pkg.</string>
+		<string>Downloads the current release version of SizeUp and imports into Munki as a pkg.</string>
 		<key>Identifier</key>
 		<string>com.github.Lotusshaney.munki.SizeUp-pkg</string>
 		<key>Input</key>
