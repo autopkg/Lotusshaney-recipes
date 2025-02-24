@@ -56,6 +56,68 @@
 								<string>%version%</string>
 							</dict>
 						</array>
+						<key>postinstall_script</key>
+	<string>#!/bin/bash
+
+# Script to change ownership of the .vscode directory in each user's home directory
+
+# Exit Codes
+# 0: Success
+# 95: Not running as root
+
+# Variables
+LOG_PROCESS="fix_vscode_ownership"
+
+#Functions
+writeLog() {
+    # Write to system log
+    /usr/bin/logger -is -t "${LOG_PROCESS}" "[${LOG_PROCESS}] ${1}"
+}
+
+root_check() {
+    if [[ "$(/usr/bin/id -u)" != "0" ]] ; then
+        writeLog "${LOG_PROCESS} MUST run as root..."
+        exit 95
+    fi
+}
+
+main() {
+    # Get a list of all user directories in /Users, excluding some directories
+    for USER in $(/usr/bin/dscl . -list /Users UniqueID | /usr/bin/awk '$2 &gt; 500 { print $1 }'); do
+        
+        # Define the user's home directory
+        USER_DIR=$(/usr/bin/dscl . -read "/Users/${USER}" NFSHomeDirectory | awk '{print $2}')
+
+        # Define the .vscode directory path for this user
+        VSCODE_DIR="${USER_DIR}/.vscode"
+
+        # Check if the .vscode directory exists
+        if [[ -d "${VSCODE_DIR}" ]]; then
+            writeLog "Changing ownership of ${VSCODE_DIR} to ${USER}"
+            /usr/sbin/chown -R "${USER}":staff "${VSCODE_DIR}"
+        else
+            writeLog "Skipping: No .vscode directory found for ${USER}"
+        fi
+
+        # Define the Code directory path for this user
+        VSCODE_LIB_DIR="${USER_DIR}/Library/Application Support/Code"
+        
+        # Check if the Code directory exists
+        if [[ -d "${VSCODE_LIB_DIR}" ]]; then
+            writeLog "Changing ownership of ${VSCODE_LIB_DIR} to ${USER}"
+            /usr/sbin/chown -R "${USER}":staff "${VSCODE_LIB_DIR}"
+        else
+            writeLog "Skipping: No Code directory found for ${USER}"
+        fi
+    done
+}
+
+# Main
+root_check
+main
+writeLog "${LOG_PROCESS} complete."
+
+exit 0</string>
 					</dict>
 				</dict>
 				<key>Processor</key>
