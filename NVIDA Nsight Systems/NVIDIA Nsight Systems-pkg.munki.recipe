@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>Description</key>
+		<string>Downloads the latest version of NVIDIA Nsight Systems for macOS and imports it into Munki as a PKG.</string>
+		<key>Identifier</key>
+		<string>com.github.Lotusshaney.munki.nsightsystems-pkg</string>
+		<key>Input</key>
+		<dict>
+			<key>MUNKI_REPO_SUBDIR</key>
+			<string>apps/%NAME%</string>
+			<key>NAME</key>
+			<string>NVIDIA Nsight Systems</string>
+			<key>pkginfo</key>
+			<dict>
+				<key>catalogs</key>
+				<array>
+					<string>testing</string>
+				</array>
+				<key>description</key>
+				<string>NVIDIA Nsight™ Systems is a system-wide performance analysis tool designed to visualize an applications algorithms, identify the largest opportunities to optimize, and tune to scale efficiently across any quantity or size of CPUs and GPUs, from large servers to our smallest systems-on-a-chip (SoCs).</string>
+				<key>developer</key>
+				<string>NVIDIA</string>
+				<key>display_name</key>
+				<string>NVIDIA Nsight Systems</string>
+				<key>name</key>
+				<string>%NAME%</string>
+				<key>unattended_install</key>
+				<true/>
+			</dict>
+		</dict>
+		<key>MinimumVersion</key>
+		<string>2.3</string>
+		<key>ParentRecipe</key>
+		<string>com.github.Lotusshaney.pkg.nsightsystems</string>
+		<key>Process</key>
+		<array>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>additional_pkginfo</key>
+					<dict>
+						<key>installs</key>
+						<array>
+							<dict>
+								<key>path</key>
+								<string>/Applications/NVIDIA Nsight Systems.app</string>
+								<key>type</key>
+								<string>application</string>
+								<key>CFBundleShortVersionString</key>
+								<string>%version%</string>
+							</dict>
+						</array>
+					</dict>
+				</dict>
+				<key>Processor</key>
+				<string>MunkiPkginfoMerger</string>
+			</dict>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>pkg_path</key>
+					<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+					<key>repo_subdirectory</key>
+					<string>%MUNKI_REPO_SUBDIR%</string>
+				</dict>
+				<key>Processor</key>
+				<string>MunkiImporter</string>
+			</dict>
+		</array>
+	</dict>
+</plist>
