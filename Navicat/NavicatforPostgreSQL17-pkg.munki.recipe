@@ -6,7 +6,7 @@
         <string>Downloads the latest version of Navicat for PostgreSQL 17 and imports it into a
             munki_repo as a PKG.</string>
         <key>Identifier</key>
-        <string>com.github.Lotusshaney.munki.NavicatPostgreSQL17</string>
+        <string>com.github.Lotusshaney.munki.NavicatPostgreSQL17-pkg</string>
         <key>Input</key>
         <dict>
             <key>MUNKI_CATEGORY</key>
