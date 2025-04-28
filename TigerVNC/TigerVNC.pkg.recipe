@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Description</key>
+        <string>Downloads the latest version of TigerVNC and makes a PKG. Since TigerVNC is distributed with the version number in the app name, this recipe makes sure the app is copied in the form of %DESTINATION_PATH%/%NAME%.app, thereby stripping out the version, in order to maintain a single TigerVNC app in the desired location. Set DERIVE_MIN_OS to a non-empty string to derive the minimum os version from MunkiInstallsItemsCreator, either via Input in an override or via the -k option, i.e.: `-k DERIVE_MIN_OS=yes`</string>
+        <key>Identifier</key>
+        <string>com.github.Lotusshaney.pkg.TigerVNC</string>
+        <key>Input</key>
+        <dict>
+            <key>DERIVE_MIN_OS</key>
+            <string></string>
+            <key>DESTINATION_PATH</key>
+            <string>/Applications</string>
+            <key>MUNKI_CATEGORY</key>
+            <string>Utilities</string>
+            <key>MUNKI_REPO_SUBDIR</key>
+            <string>apps/tigervnc</string>
+            <key>NAME</key>
+            <string>TigerVNC</string>
+            <key>MinimumVersion</key>
+            <string>1.0.0</string>
+        </dict>
+        <key>ParentRecipe</key>
+        <string>com.github.apizz.download.TigerVNC</string>
+        <key>Process</key>
+        <array>
+            <dict>
+                <key>Arguments</key>
+                <dict>
+                    <key>destination_path</key>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%/%DESTINATION_PATH%/%NAME%.app</string>
+                    <key>source_path</key>
+                    <string>%pathname%/%dmg_found_filename%</string>
+                    <key>overwrite</key>
+                    <true />
+                </dict>
+                <key>Processor</key>
+                <string>Copier</string>
+            </dict>
+            <dict>
+                <key>Processor</key>
+                <string>AppPkgCreator</string>
+                <key>Arguments</key>
+                <dict>
+                    <key>app_path</key>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%/%DESTINATION_PATH%/%NAME%.app</string>
+                    <key>pkg_path</key>
+                    <string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+                </dict>
+            </dict>
+            <dict>
+                <key>Arguments</key>
+                <dict>
+                    <key>path_list</key>
+                    <array>
+                        <string>%RECIPE_CACHE_DIR%/%NAME%</string>
+                    </array>
+                </dict>
+                <key>Processor</key>
+                <string>PathDeleter</string>
+            </dict>
+        </array>
+    </dict>
+</plist>
