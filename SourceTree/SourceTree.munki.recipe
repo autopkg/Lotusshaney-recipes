@@ -41,7 +41,7 @@ exit 0
 			</string>
 			<key>postinstall_script</key>
 			<string>#!/bin/sh
-
+/bin/chmod -R 755 /Applications/SourceTree.app
 /bin/cp -f /Applications/SourceTree.app/Contents/Resources/stree /usr/local/bin/stree
 exit 0
 			</string>
