@@ -21,7 +21,7 @@
 					<string>testing</string>
 				</array>
 				<key>description</key>
-				<string>Popular multimedia player.</string>
+				<string>Creality Print is a free, open-source FDM (Fused Deposition Modeling) 3D printing slicing software developed by Creality that converts 3D models into G-code for their printers.</string>
 				<key>developer</key>
 				<string>Shenzhen Creality 3D Technology Co</string>
 				<key>display_name</key>
