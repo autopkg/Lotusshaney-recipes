@@ -101,8 +101,6 @@ exit 0</string>
 						</array>
 						<key>id</key>
 						<string>org.wireshark.Wireshark.pkg</string>
-						<key>options</key>
-						<string>purge_ds_store</string>
 						<key>pkgdir</key>
 						<string>%RECIPE_CACHE_DIR%</string>
 						<key>scripts</key>
@@ -198,8 +196,6 @@ exit 0</string>
 						</array>
 						<key>id</key>
 						<string>org.wireshark.Wireshark.pkg</string>
-						<key>options</key>
-						<string>purge_ds_store</string>
 						<key>pkgdir</key>
 						<string>%RECIPE_CACHE_DIR%</string>
 					</dict>
@@ -313,8 +309,6 @@ exit 0</string>
 						<string>org.wireshark.WiresharkInstallerUniversal</string>
 						<key>scripts</key>
 						<string>%RECIPE_CACHE_DIR%/Universal/Scripts</string>
-						<key>options</key>
-						<string>purge_ds_store</string>
 					</dict>
 				</dict>
 			</dict>

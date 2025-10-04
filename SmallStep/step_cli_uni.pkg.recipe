@@ -354,8 +354,6 @@ exit 0
           <dict>
             <key>id</key>
             <string>com.github.smallstep.step.universal</string>
-            <key>options</key>
-            <string>purge_ds_store</string>
             <key>pkgname</key>
             <string>%NAME%-Universal-%version%</string>
             <key>scripts</key>

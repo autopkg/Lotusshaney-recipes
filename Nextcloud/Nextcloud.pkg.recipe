@@ -197,8 +197,6 @@ exit 0
 						<string>%RECIPE_CACHE_DIR%/Scripts</string>
 						<key>pkgroot</key>
 						<string>%RECIPE_CACHE_DIR%/payload</string>
-						<key>options</key>
-						<string>purge_ds_store</string>
 					</dict>
 				</dict>
 			</dict>
