@@ -14,7 +14,7 @@
 	<key>MinimumVersion</key>
 	<string>2.3</string>
 	<key>ParentRecipe</key>
-	<string>com.github.Lotusshaney.download.MunkiAdmin</string>
+	<string>com.github.jleggat.MunkiAdmin.download</string>
 	<key>Process</key>
 	<array>
 		<dict>
