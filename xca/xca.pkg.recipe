@@ -14,7 +14,7 @@
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
 	<key>ParentRecipe</key>
-	<string>com.github.Lotusshaney.download.xca</string>
+	<string>com.github.peterkelm.download.xca</string>
 	<key>Process</key>
 	<array>
 		<dict>
