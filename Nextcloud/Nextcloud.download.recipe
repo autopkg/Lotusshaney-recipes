@@ -21,7 +21,7 @@
 				<key>Arguments</key>
 				<dict>
 					<key>warning_message</key>
-					<string>Consider switching to the NextCloud recipes in the peterkelm-recipes repo. This recipe is deprecated and will be removed in the future.</string>
+					<string>Consider switching to the NextCloud download or munki recipes in the peterkelm-recipes repo or the NextCloud pkg recipe in the andredb90-recipes repo. This recipe is deprecated and will be removed in the future.</string>
 				</dict>
 			</dict>
 			<dict>
