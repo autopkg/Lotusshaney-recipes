@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple/DTD PLIST 1.0//EN" "http://apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Description</key>
+    <string>Downloads, packages and imports into Munki latest version of the UV / UVX CLI tools</string>
+    <key>Identifier</key>
+    <string>com.github.Lotusshaney.munki.uv</string>
+    <key>Input</key>
+    <dict>
+      <key>DISPLAY_NAME</key>
+      <string>UV</string>
+      <key>MUNKI_CATEGORY</key>
+      <string>Utilities</string>
+      <key>MUNKI_REPO_SUBDIR</key>
+      <string>apps/%NAME%</string>
+      <key>pkginfo</key>
+      <dict>
+        <key>catalogs</key>
+        <array>
+          <string>testing</string>
+        </array>
+        <key>category</key>
+        <string>%MUNKI_CATEGORY%</string>
+        <key>description</key>
+        <string>An extremely fast Python package and project manager, written in Rust.</string>
+        <key>developer</key>
+        <string>Astral</string>
+        <key>display_name</key>
+        <string>%DISPLAY_NAME%</string>
+        <key>name</key>
+        <string>%NAME%</string>
+        <key>unattended_install</key>
+        <true />
+        <key>unattended_uninstall</key>
+        <true />
+        <key>uninstallable</key>
+        <true />
+        <key>version_script</key>
+        <string><![CDATA[#!/bin/bash
+
+if [[ -e /usr/local/bin/uv ]]; then
+    /usr/local/bin/uv --version | /usr/bin/awk '{print $2}'
+fi]]>
+</string>
+      </dict>
+    </dict>
+    <key>ParentRecipe</key>
+    <string>com.github.Lotusshaney.pkg.uv</string>
+    <key>MinimumVersion</key>
+    <string>1.1.0</string>
+    <key>Process</key>
+    <array>
+      <dict>
+        <key>Processor</key>
+        <string>MunkiImporter</string>
+        <key>Arguments</key>
+        <dict>
+          <key>pkg_path</key>
+          <string>%pkg_path%</string>
+          <key>repo_subdirectory</key>
+          <string>%MUNKI_REPO_SUBDIR%</string>
+        </dict>
+      </dict>
+    </array>
+  </dict>
+</plist>
