@@ -3,7 +3,7 @@
 <plist version="1.0">
   <dict>
     <key>Description</key>
-    <string>Packages the latest version of the UV / UVX CLI tool</string>
+    <string>Packages the latest version of the UV / UVX CLI tools</string>
     <key>Identifier</key>
     <string>com.github.Lotusshaney.pkg.uv</string>
     <key>ParentRecipe</key>

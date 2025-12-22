@@ -3,7 +3,7 @@
 <plist version="1.0">
 	<dict>
 		<key>Description</key>
-		<string>Downloads the latest version of the UV / UVX CLI tool.</string>
+		<string>Downloads the latest version of the UV / UVX CLI tools</string>
 		<key>Comment</key>
 		<string>Need to specify x86_64 or aarch64 accordingly in the ARCH variable.</string>
 		<key>Identifier</key>
