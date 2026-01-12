@@ -28,6 +28,24 @@
 				<string>%NAME%</string>
 				<key>unattended_install</key>
 				<true />
+				<key>version_script</key>
+				<string><![CDATA[##/bin/bash
+
+# Broken Version Retriver Script
+
+APP="/Applications/RStudio.app"
+INFO="${APP}/Contents/Info.plist"
+
+if [[ -e "${INFO}" ]]; then
+    version=$(/usr/bin/plutil -extract CFBundleShortVersionString raw "${INFO}" 2>/dev/null )
+fi
+
+#Process version string
+if [[ -n "${version}" ]]; then
+    echo "${version}" | /usr/bin/awk -F '+' '{print $1}'
+fi
+
+exit 0]]></string>
 			</dict>
 		</dict>
 		<key>MinimumVersion</key>
