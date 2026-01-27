@@ -32,9 +32,9 @@
 				<key>name</key>
 				<string>%NAME%</string>
 				<key>unattended_install</key>
-				<true/>
+				<true />
 				<key>unattended_uninstall</key>
-				<true/>
+				<true />
 			</dict>
 		</dict>
 		<key>MinimumVersion</key>
@@ -43,6 +43,27 @@
 		<string>com.github.Lotusshaney.pkg.microsoftwindowsapp</string>
 		<key>Process</key>
 		<array>
+			<dict>
+				<key>Arguments</key>
+				<dict>
+					<key>additional_pkginfo</key>
+					<dict>
+						<key>installs</key>
+						<array>
+							<dict>
+								<key>path</key>
+								<string>/Applications/Windows App.app</string>
+								<key>type</key>
+								<string>application</string>
+								<key>CFBundleShortVersionString</key>
+								<string>%version%</string>
+							</dict>
+						</array>
+					</dict>
+				</dict>
+				<key>Processor</key>
+				<string>MunkiPkginfoMerger</string>
+			</dict>
 			<dict>
 				<key>Arguments</key>
 				<dict>
