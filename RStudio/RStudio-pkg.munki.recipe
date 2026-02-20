@@ -29,7 +29,7 @@
 				<key>unattended_install</key>
 				<true />
 				<key>version_script</key>
-				<string><![CDATA[##/bin/bash
+				<string><![CDATA[#!/bin/bash
 
 # Broken Version Retriver Script
 
