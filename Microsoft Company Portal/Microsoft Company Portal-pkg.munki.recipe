@@ -21,7 +21,9 @@
 				<key>description</key>
 				<string>Microsoft Company Portal</string>
 				<key>developer</key>
-				<string>Patrick Linnane</string>
+				<string>Microsoft</string>
+				<key>category</key>
+				<string>Productivity</string>
 				<key>display_name</key>
 				<string>Microsoft Company Portal</string>
 				<key>name</key>
