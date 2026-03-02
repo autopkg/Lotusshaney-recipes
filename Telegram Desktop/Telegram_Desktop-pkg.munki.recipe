@@ -45,7 +45,7 @@
 						<array>
 							<dict>
 								<key>path</key>
-								<string>/Applications/Telegram.app</string>
+								<string>/Applications/Telegram Desktop.app</string>
 								<key>type</key>
 								<string>application</string>
 								<key>CFBundleShortVersionString</key>
