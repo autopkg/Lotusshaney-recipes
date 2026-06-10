@@ -48,7 +48,7 @@
         <key>Arguments</key>
         <dict>
           <key>pattern</key>
-          <string>%RECIPE_CACHE_DIR%/unpack/%NAME%-%ARCH%-apple-darwin/</string>
+          <string>%RECIPE_CACHE_DIR%/unpack/uv-%ARCH%-apple-darwin/</string>
         </dict>
       </dict>
       <dict>
@@ -111,7 +111,7 @@
               </dict>
               <dict>
                 <key>path</key>
-                <string>usr/local/bin/%NAME%</string>
+                <string>usr/local/bin/uv</string>
                 <key>mode</key>
                 <string>0755</string>
                 <key>user</key>
