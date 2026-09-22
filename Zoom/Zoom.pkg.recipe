@@ -16,7 +16,7 @@
 	<key>MinimumVersion</key>
 	<string>1.1</string>
 	<key>ParentRecipe</key>
-	<string>com.github.Lotusshaney.download.zoomus</string>
+	<string>com.github.hansen-m.download.zoomus</string>
 	<key>Process</key>
 	<array>
 		<dict>
