@@ -12,11 +12,20 @@
 			<string>Wireshark</string>
 		</dict>
 		<key>MinimumVersion</key>
-		<string>0.4.0</string>
+		<string>1.1</string>
 		<key>ParentRecipe</key>
 		<string>com.github.Lotusshaney.download.Wireshark-Universal</string>
 		<key>Process</key>
 		<array>
+			<dict>
+				<key>Processor</key>
+				<string>DeprecationWarning</string>
+				<key>Arguments</key>
+				<dict>
+					<key>warning_message</key>
+					<string>Consider switching to the Wireshark recipes in the homebysix-recipes repo, which pkg a Universal version of the installer. This recipe is deprecated and will be removed in the future.</string>
+				</dict>
+			</dict>
 			<dict>
 				<key>Arguments</key>
 				<dict>
@@ -34,7 +43,7 @@
 					<key>pkgroot</key>
 					<string>%RECIPE_CACHE_DIR%/intel_scripts</string>
 					<key>pkgdirs</key>
-					<dict/>
+					<dict />
 				</dict>
 			</dict>
 			<dict>
@@ -129,7 +138,7 @@ exit 0</string>
 					<key>pkgroot</key>
 					<string>%RECIPE_CACHE_DIR%/arm_scripts</string>
 					<key>pkgdirs</key>
-					<dict/>
+					<dict />
 				</dict>
 			</dict>
 			<dict>
@@ -215,7 +224,7 @@ exit 0</string>
 					<key>pkgroot</key>
 					<string>%RECIPE_CACHE_DIR%/Universal/Scripts</string>
 					<key>pkgdirs</key>
-					<dict/>
+					<dict />
 				</dict>
 			</dict>
 			<dict>
@@ -226,7 +235,7 @@ exit 0</string>
 					<key>pkgroot</key>
 					<string>%RECIPE_CACHE_DIR%/Universal/pkgroot</string>
 					<key>pkgdirs</key>
-					<dict/>
+					<dict />
 				</dict>
 			</dict>
 			<dict>
@@ -239,7 +248,7 @@ exit 0</string>
 					<key>target</key>
 					<string>%RECIPE_CACHE_DIR%/Universal/Scripts/%NAME%-Intel-%version%.pkg</string>
 					<key>overwrite</key>
-					<false/>
+					<false />
 				</dict>
 			</dict>
 			<dict>
@@ -252,7 +261,7 @@ exit 0</string>
 					<key>target</key>
 					<string>%RECIPE_CACHE_DIR%/Universal/Scripts/%NAME%-Arm-%version%.pkg</string>
 					<key>overwrite</key>
-					<false/>
+					<false />
 				</dict>
 			</dict>
 			<dict>
