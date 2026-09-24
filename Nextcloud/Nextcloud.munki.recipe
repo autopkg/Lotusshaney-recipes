@@ -27,7 +27,7 @@
 				<key>name</key>
 				<string>%NAME%</string>
 				<key>unattended_install</key>
-				<true/>
+				<true />
 			</dict>
 		</dict>
 		<key>MinimumVersion</key>
@@ -42,7 +42,7 @@
 					<key>additional_pkginfo</key>
 					<dict>
 						<key>blocking_applications</key>
-						<array/>
+						<array />
 						<key>installs</key>
 						<array>
 							<dict>
@@ -51,9 +51,11 @@
 								<key>type</key>
 								<string>application</string>
 								<key>CFBundleShortVersionString</key>
-								<string/>
+								<string />
 								<key>CFBundleVersion</key>
 								<string>%version%</string>
+								<key>version_comparison_key</key>
+								<string>CFBundleVersion</string>
 							</dict>
 						</array>
 					</dict>
